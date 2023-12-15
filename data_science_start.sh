@@ -70,16 +70,19 @@ python_setup() {
 }
 
 gitignore() {
+	echo "Creating .gitignore"
+	echo '"Project specific ignores' >.gitignore
+	echo 'data/raw/' >>.gitignore
+
 	extensions="python,jupyer_notebook,visualstudiocode"
 	if ! [ -x "$(command -v gi)" ]; then
-		curl -sLw \"\\\n\" https://www.toptal.com/developers/gitignore/api/$extensions >.gitignore
+		curl -sLw \"\\\n\" https://www.toptal.com/developers/gitignore/api/$extensions >>.gitignore
 	else
-		gi $extensions >.gitignore
+		gi $extensions >>.gitignore
 	fi
 }
 
 git_init() {
-	cd $project_name
 	git init
 	sleep 2
 	git add .
