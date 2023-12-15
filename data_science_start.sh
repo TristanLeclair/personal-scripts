@@ -63,10 +63,13 @@ README() {
 }
 
 python_setup() {
-	python3 -m venv venv
-	source venv/bin/activate
-	pip install --upgrade pip
-	pip install -r requirements.txt
+	# check if conda is installed
+	# if conda is installed, create conda environment
+	# else create venv
+	# install requirements.txt
+	conda create --prefix ./venv
+	conda activate ./venv
+	conda install -r requirements.txt
 }
 
 gitignore() {
